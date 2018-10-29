@@ -1,18 +1,7 @@
-from functools import reduce
 import copy
 
-def objective(capasity, values, costs, number_of_items):
-    total_value = reduce(
-            lambda s, x: s + x[0] * x[1],
-            zip(values, number_of_items),
-            0)
-    cost = reduce(lambda s, x: s + x[0] * x[1],
-            zip(costs, number_of_items), 0)
-
-    return (capasity >= cost, total_value)
-
-def bruteforce(values, number_of_items):
-    pass
+#from sa import SA
+from utils import objective
 
 if __name__ == '__main__':
 
@@ -21,5 +10,6 @@ if __name__ == '__main__':
     number_of_items = [0 for i in range(0, len(values))]
     capasity = 65
 
-    #result = bruteforce(values, copy.deepcopy(number_of_items))
-    print(objective(capasity, values, costs, number_of_items))
+    #sa = SA(capasity, values, costs, copy.deepcopy(number_of_items))
+    #best_result_of_sa = sa.solve()
+    #print(objective(capasity, values, costs, best_result_of_sa))
