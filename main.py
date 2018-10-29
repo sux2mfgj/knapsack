@@ -1,5 +1,8 @@
 from utils import objective
 from sa import SimulatedAnealing
+# from ta import TabuSearch
+# from ils import IteratedLocalSearch
+# from gls import GuidedLocalSearch
 
 import sys
 
@@ -21,7 +24,15 @@ if __name__ == '__main__':
 
     sa = SimulatedAnealing(
             capasity, values, costs, number_of_items, 2, 10000, 0.99)
-    implemented_algorithms = {'sa': sa}
+    # ta = TabuSearch(...)
+    # ils = IteratedLocalSearch(...)
+    # gls = GuidedLocalSearch(...)
+    implemented_algorithms = {
+            'sa': sa
+            # 'ta': ta
+            # 'ils': ils
+            # 'gls': gls
+            }
 
     alg = implemented_algorithms.get(alg_type)
     if not alg:
