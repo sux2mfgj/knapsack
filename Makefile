@@ -1,7 +1,8 @@
-ALGORITHM = sa
+ALGORITHM 	:= sa
+DEBUG		:=
 run:
 	source ./env/bin/activate; \
-	python main.py $(ALGORITHM)
+	python main.py -a $(ALGORITHM) $(DEBUG)
 
 prepare:
 	python -m venv ./env
@@ -9,6 +10,9 @@ prepare:
 test_sa:
 	source ./env/bin/activate; \
 	python ./sa.py
+
+style:
+	yapf -i *.py
 
 flake8:
 	flake8 *.py

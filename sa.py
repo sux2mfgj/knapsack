@@ -6,31 +6,23 @@ from utils import Solver, objective
 
 
 class SimulatedAnealing(Solver):
-    def __init__(
-            self,
-            capasity,
-            values,
-            costs,
-            number_of_items,
-            neighbor_distance,
-            T,
-            cool):
+    def __init__(self, capasity, values, costs, number_of_items,
+                 neighbor_distance, T, cool):
         super().__init__(capasity, values, costs, number_of_items)
         self.neighbor_distance = neighbor_distance
         self.T = T
         self.cool = cool
 
     def solve(self) -> [int]:
-        self.generate_random_list()
+        self.__generate_random_list()
         self.best_set = self.number_of_items
 
         while self.T > 0.0001:
-            self.generate_random_list()
+            self.__generate_random_list()
             if self.best_score < self.current_score:
                 self.best_set = self.number_of_items
             else:
-                p = pow(
-                        math.e,
+                p = pow(math.e,
                         -abs(self.current_score - self.best_score) / self.T)
                 if random.random() < p:
                     self.best_set = self.number_of_items
@@ -41,8 +33,8 @@ class SimulatedAnealing(Solver):
 
     @property
     def best_score(self):
-        (_, _, total) = objective(
-                self.capasity, self.values, self.costs, self.best_set)
+        (_, _, total) = objective(self.capasity, self.values, self.costs,
+                                  self.best_set)
         return total
 
     @property
@@ -51,13 +43,10 @@ class SimulatedAnealing(Solver):
         return total
 
     def __objenctive(self) -> (True, int, int):
-        return objective(
-                self.capasity,
-                self.values,
-                self.costs,
-                self.number_of_items)
+        return objective(self.capasity, self.values, self.costs,
+                         self.number_of_items)
 
-    def generate_random_list(self):
+    def __generate_random_list(self):
         for i in range(1, 50):
             self.__change()
 
@@ -88,8 +77,8 @@ if __name__ == '__main__':
     from logging import INFO
     basicConfig(level=INFO)
 
-    sa = SimulatedAnealing(
-            capasity, values, costs, number_of_items, 2, 10000, 0.99)
+    sa = SimulatedAnealing(capasity, values, costs, number_of_items, 2, 10000,
+                           0.99)
     best_result_of_sa = sa.solve()
     best_cost = objective(capasity, values, costs, best_result_of_sa)
 
