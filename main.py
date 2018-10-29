@@ -2,7 +2,8 @@ from logging import basicConfig
 import argparse
 
 from utils import objective
-from sa import SimulatedAnealing
+from simulated_annealing import SimulatedAnealing
+from hill_climbing import HillClimbing
 # from ta import TabuSearch
 # from ils import IteratedLocalSearch
 # from gls import GuidedLocalSearch
@@ -14,15 +15,19 @@ if __name__ == '__main__':
     costs = [10, 12, 7, 9, 21, 16]
     number_of_items = [0 for i in range(0, len(values))]
     capasity = 65
+    neighbor_distance = 2
 
     # prepare solver dictionary
-    sa = SimulatedAnealing(capasity, values, costs, number_of_items, 2, 10000,
-                           0.99)
+    sa = SimulatedAnealing(capasity, values, costs, number_of_items,
+                           neighbor_distance, 10000, 0.99)
+    hc = HillClimbing(capasity, values, costs, number_of_items,
+                      neighbor_distance)
     # ta = TabuSearch(...)
     # ils = IteratedLocalSearch(...)
     # gls = GuidedLocalSearch(...)
     implemented_algorithms = {
-        'sa': sa
+        'sa': sa,
+        'hc': hc,
         # 'ta': ta
         # 'ils': ils
         # 'gls': gls
