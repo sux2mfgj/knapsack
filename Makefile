@@ -9,10 +9,13 @@ prepare:
 
 test_sa:
 	source ./env/bin/activate; \
-	python ./sa.py
+	python simulated_annealing.py
 
 style:
 	yapf -i *.py
 
 flake8:
 	flake8 *.py
+
+type_hint:
+	mypy *.py

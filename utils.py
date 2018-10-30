@@ -19,7 +19,7 @@ class Solver(ABC):
         pass
 
     @property
-    def best_set(self):
+    def best_set(self) -> [int]:
         return self._best_set
 
     @best_set.setter

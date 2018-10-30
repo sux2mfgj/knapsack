@@ -32,12 +32,6 @@ class SimulatedAnealing(Solver):
         return self.best_set
 
     @property
-    def best_score(self):
-        (_, _, total) = objective(self.capasity, self.values, self.costs,
-                                  self.best_set)
-        return total
-
-    @property
     def current_score(self):
         (_, _, total) = self.__objenctive()
         return total
