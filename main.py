@@ -5,7 +5,7 @@ from utils import objective
 from simulated_annealing import SimulatedAnealing
 from hill_climbing import HillClimbing
 # from ta import TabuSearch
-# from ils import IteratedLocalSearch
+from iterative_local_search import IterativeLocalSearch
 # from gls import GuidedLocalSearch
 
 if __name__ == '__main__':
@@ -23,13 +23,13 @@ if __name__ == '__main__':
     hc = HillClimbing(capasity, values, costs, number_of_items,
                       neighbor_distance)
     # ta = TabuSearch(...)
-    # ils = IteratedLocalSearch(...)
+    ils = IterativeLocalSearch(capasity, values, costs, number_of_items, neighbor_distance)
     # gls = GuidedLocalSearch(...)
     implemented_algorithms = {
         'sa': sa,
         'hc': hc,
         # 'ta': ta
-        # 'ils': ils
+        'ils': ils,
         # 'gls': gls
     }
 
